@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "704033026986",
+    "firebase_url": "https://texi-sharing.firebaseio.com",
+    "project_id": "texi-sharing",
+    "storage_bucket": "texi-sharing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704033026986:android:efc0ffe2a2362179ec71d3",
+        "android_client_info": {
+          "package_name": "com.google.texxxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704033026986-ougem7i1tg4o4hg2drehinueen9jev4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDUcrmu-vzDC-4CPV02N-I1_bZE2Y31Rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704033026986-ougem7i1tg4o4hg2drehinueen9jev4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
