@@ -20,6 +20,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
@@ -28,33 +32,34 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class MainActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
 
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
+    private ChildEventListener mChild;
+
+
     private static final String LOG_TAG = "MainActivity";
-
     private MapView mMapView;
-
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
 
-
+    private double now_latitude; // 위도
+    private double now_longitude; // 경도
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         mMapView = (MapView)findViewById(R.id.map_view);
-
         mMapView.setCurrentLocationEventListener(this);
 
         if (!checkLocationServicesStatus()) {
-
             showDialogForLocationServiceSetting();
         }else {
-
             checkRunTimePermission();
         }
 
@@ -71,17 +76,21 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
         Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
+
+        now_latitude = mapPointGeo.latitude; // 현위치 위도
+        now_longitude = mapPointGeo.longitude; //현위치 경도
+
+        databaseReference.child("위치").child("위도").setValue(now_latitude);
+        databaseReference.child("위치").child("경도").setValue(now_longitude);
     }
 
 
     @Override
     public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
-
     }
 
     @Override
     public void onCurrentLocationUpdateFailed(MapView mapView) {
-
     }
 
     @Override
@@ -103,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
     private void onFinishReverseGeoCoding(String result) {
 //        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
     }
-
-
 
 
     /*
@@ -130,17 +137,11 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
                 }
             }
 
-
             if ( check_result ) {
                 Log.d("@@@", "start");
                 //위치 값을 가져올 수 있음
-                mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-                //트레킹모드
-                /*트래킹모드는 3가지를 지원합니다.
-                TrackingModeOff는 현위치 트래킹 모드 및 나침반 모드가 모두 꺼집니다.
-                TrackingModeOnWithoutHeading모드는 현위치 트래킹 모드가 켜지고 위치에 따라 지도 중심이 이동되지만 나침반 모드는 꺼집니다.
-                TrackingModeOnWithHeading은 현위치 트래킹모드와 나침반 모드 둘 다 켜집니다.
-                */
+                mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+
             }
 
             else {
@@ -178,6 +179,12 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
 
             // 3.  위치 값을 가져올 수 있음
             mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+            //트레킹모드
+                /*트래킹모드는 3가지를 지원합니다.
+                TrackingModeOff는 현위치 트래킹 모드 및 나침반 모드가 모두 꺼집니다.
+                TrackingModeOnWithoutHeading모드는 현위치 트래킹 모드가 켜지고 위치에 따라 지도 중심이 이동되지만 나침반 모드는 꺼집니다.
+                TrackingModeOnWithHeading은 현위치 트래킹모드와 나침반 모드 둘 다 켜집니다.
+                */
 
 
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
@@ -202,8 +209,6 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         }
 
     }
-
-
 
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
