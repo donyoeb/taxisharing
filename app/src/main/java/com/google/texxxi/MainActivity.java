@@ -11,15 +11,12 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 
-import net.daum.android.map.MapView;
+import net.daum.mf.map.api.MapView;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
-
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +25,5 @@ public class MainActivity extends AppCompatActivity {
         MapView mapView = new MapView(this);
         ViewGroup mapViewContainer = findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
-
-
-
     }
-
-
 }
