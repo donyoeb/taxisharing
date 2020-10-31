@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+
         <ImageView
             android:layout_weight="2"
             android:id="@+id/imageView"
@@ -26,6 +27,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/taxiimg" />
 
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="made by - 운돈상삭" />
 
     </LinearLayout>
 
