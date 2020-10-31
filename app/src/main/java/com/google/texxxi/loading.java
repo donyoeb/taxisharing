@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+
 public class loading extends Activity {
     Handler handler = new Handler();
 
@@ -12,7 +13,7 @@ public class loading extends Activity {
         @Override
         public void run() {
 // 3초뒤에 다음화면(MainActivity)으로 넘어가기 Handler 사용
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), loginActivity.class);
             startActivity(intent); // 다음화면으로 넘어가기
             finish(); // Activity 화면 제거
         }
@@ -21,6 +22,8 @@ public class loading extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+
     } // end of onCreate
 
     @Override

@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:src="@drawable/taxiimg"
-        />
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_weight="1"
+            android:gravity="center|center_horizontal"
+            android:textSize="50dp"
+            android:text="택시 쉐어링"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_weight="2"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/taxiimg" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
