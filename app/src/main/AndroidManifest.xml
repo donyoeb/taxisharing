@@ -31,7 +31,7 @@
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
+            ></activity>
 
         <meta-data android:name="com.kakao.sdk.AppKey"
             android:value="d397adb99cd42a855b85f19910ad482a"/>

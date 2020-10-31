@@ -42,8 +42,6 @@ public class loginActivity extends Activity {
     private ArrayList<String> Users_pass = new ArrayList<>();   //유저 저장을 위한 리스트
 
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -122,9 +120,7 @@ public class loginActivity extends Activity {
                             }
                             if (flag == 0) {
 
-                                databaseReference.child("유저").setValue(stname); // 신규가입 로그인정보 데이터베이스에 저장
-                                databaseReference.child("유저").child(stname).child("비밀번호").setValue(stpass);
-
+                                databaseReference.child("유저").child(stname).child("비밀번호").setValue(pass); //로그인 정보 데이터베이스에 저장
 
                                 Intent intent1 = new Intent(loginActivity.this, MenuActivity.class); // 로그인화면 -> 메뉴화면
                                 intent1.putExtra("닉네임", stname);
@@ -179,7 +175,7 @@ public class loginActivity extends Activity {
                                 }
                             }
                             if (flag == 0) {
-                                Toast.makeText(loginActivity.this, "등록된 정보가 없습니다.\t신규 로그인은 '신규가입' 버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(loginActivity.this, "등록된 정보가 없습니다.\n신규 로그인은 '신규가입' 버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -192,7 +188,7 @@ public class loginActivity extends Activity {
 
     }
 
-        private void initDatabase() {
+    private void initDatabase() {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
@@ -200,17 +196,14 @@ public class loginActivity extends Activity {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
@@ -219,14 +212,16 @@ public class loginActivity extends Activity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         };
+        mReference.addChildEventListener(mChild);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mReference.removeEventListener(mChild);
     }
+
 }
 
