@@ -16,7 +16,7 @@ public class menu2Activity extends Activity implements TimePicker.OnTimeChangedL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu2);
 
         c = Calendar.getInstance(); // 캘린더로 현재 시간, 분 가져오기위해 설정
         ttv = (TextView) findViewById(R.id.timetextview);
@@ -25,13 +25,13 @@ public class menu2Activity extends Activity implements TimePicker.OnTimeChangedL
         int hourofday = c.get(c.HOUR_OF_DAY);
         int minute = c.get(c.MINUTE);
 
-        ttv.setText("현재 시간\n시:분 >> " + hourofday + ":" + minute);
+        ttv.setText("현재 시간\n" + hourofday + ":" + minute);
 
         tp.setOnTimeChangedListener(this); // 시간, 분 선택
 
     }
 
     public void onTimeChanged(TimePicker view, int hourofday, int minute) {
-        ttv.setText("설정된 시간\n시:분 >> " + hourofday + ":" + minute);  // 선택한 시간, 분  설정
+        ttv.setText("설정된 시간\n" + hourofday + ":" + minute);  // 선택한 시간, 분  설정
     }
 }
