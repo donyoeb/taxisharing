@@ -6,8 +6,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/room"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal">
@@ -28,6 +29,7 @@
 
 
     <ListView
+        android:layout_below = "@+id/room"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -20,7 +20,7 @@
         android:textColor="#3A69D3"/>
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -71,23 +71,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
+
+    <Button
             android:text="확인"
-            android:textSize="15sp"
+            android:textSize="19dp"
             android:textColor="#ff7a00"
             android:padding="16dp"
             android:gravity="center"
-
             android:layout_width="match_parent"
-            android:layout_height="53dp"
+            android:layout_height="55dp"
             android:onClick="mOnClose"/>
 
-    </LinearLayout>
 
 
 </LinearLayout>
