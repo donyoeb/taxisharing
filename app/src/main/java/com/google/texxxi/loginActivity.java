@@ -120,8 +120,6 @@ public class loginActivity extends Activity {
                             }
                             if (flag == 0) {
 
-                                databaseReference.child("유저").child(stname).child("비밀번호").setValue(pass); //로그인 정보 데이터베이스에 저장
-
                                 Intent intent1 = new Intent(loginActivity.this, MenuActivity.class); // 로그인화면 -> 메뉴화면
                                 intent1.putExtra("닉네임", stname);
                                 intent1.putExtra("비밀번호", stpass);

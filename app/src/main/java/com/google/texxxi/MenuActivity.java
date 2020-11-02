@@ -22,6 +22,10 @@ public class MenuActivity extends Activity {
     private String name;
     private String pass;
 
+    private Button mnewbt;
+    private Button msearchbt;
+    private int roomflag = 0;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
@@ -31,6 +35,38 @@ public class MenuActivity extends Activity {
         pass =intent.getExtras().getString("비밀번호");
 
         initDatabase();
+        databaseReference.child("유저").child(name).child("비밀번호").setValue(pass); //로그인 정보 데이터베이스에 저장
+
+        mnewbt = (Button)findViewById(R.id.newbt);
+        msearchbt = (Button) findViewById(R.id.searchbt);
+
+        mnewbt.setOnClickListener(new View.OnClickListener() {   //방 생성 버튼
+            @Override
+            public void onClick(View view) {
+                roomflag = 0; // 방생성은 플레그 0
+
+                Intent intent1 = new Intent(MenuActivity.this, menu2Activity.class); // 메뉴 화면 -> 메뉴설정화면
+                intent1.putExtra("닉네임", name);
+                intent1.putExtra("방버튼", roomflag);
+
+                startActivity(intent1); // 메뉴화면 시작
+
+            }
+        });
+
+        msearchbt.setOnClickListener(new View.OnClickListener() {   //방 검색 버튼
+            @Override
+            public void onClick(View view) {
+                roomflag = 1; // 방 검색은 플레그 1
+
+                Intent intent1 = new Intent(MenuActivity.this, menu2Activity.class); // 메뉴 화면 -> 메뉴설정화면
+                intent1.putExtra("닉네임", name);
+                intent1.putExtra("방버튼", roomflag);
+
+                startActivity(intent1); // 메뉴화면 시작
+            }
+        });
+
 
 
 

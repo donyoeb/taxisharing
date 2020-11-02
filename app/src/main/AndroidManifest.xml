@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.google.texxxi">
 
 
@@ -28,6 +29,11 @@
         <activity android:name=".loginActivity"/>
 
         <activity android:name=".MenuActivity"/>
+        <activity android:name=".menu2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/popupTheme"
+            tools:ignore="LockedOrientationActivity"
+            />
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
