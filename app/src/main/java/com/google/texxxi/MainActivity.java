@@ -50,14 +50,15 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
     private double now_latitude; // 위도
     private double now_longitude; // 경도
 
+    private String name,hour,min,s_spot,a_spot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initDatabase();
-
+        ///////////////////////////////////////////////////  지도뷰
         mMapView = (MapView)findViewById(R.id.map_view);
         mMapView.setCurrentLocationEventListener(this);
 
@@ -66,6 +67,21 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         }else {
             checkRunTimePermission();
         }
+
+        ////////////////////////////////////////////////////////
+
+        initDatabase();
+
+        Intent intent = getIntent();
+        name =intent.getExtras().getString("닉네임");
+        hour =intent.getExtras().getString("출발시");
+        min = intent.getExtras().getString("출발분");
+        s_spot = intent.getExtras().getString("출발지");
+        a_spot = intent.getExtras().getString("도착지");
+
+        databaseReference.child("방").child("공통방").child(s_spot).child(name).child("도착지").setValue(a_spot); // 방정보 데이터베이스에 저장
+        databaseReference.child("방").child("공통방").child(s_spot).child(name).child("출발시").setValue(hour);
+        databaseReference.child("방").child("공통방").child(s_spot).child(name).child("출발분").setValue(min);
 
     }
 
@@ -84,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         now_latitude = mapPointGeo.latitude; // 현위치 위도
         now_longitude = mapPointGeo.longitude; //현위치 경도
 
-        databaseReference.child("위치").child("위도").setValue(now_latitude);
-        databaseReference.child("위치").child("경도").setValue(now_longitude);
+        databaseReference.child("유저").child(name).child("위치").child("위도").setValue(now_latitude);
+        databaseReference.child("유저").child(name).child("위치").child("경도").setValue(now_longitude);
     }
 
 

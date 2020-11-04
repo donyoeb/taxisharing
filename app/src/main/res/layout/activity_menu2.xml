@@ -71,8 +71,12 @@
 
     </LinearLayout>
 
-
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <Button
             android:text="확인"
             android:textSize="19dp"
             android:textColor="#ff7a00"
@@ -80,7 +84,20 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:onClick="mOnClose"/>
+            android:onClick="mOnClose1"/>
+
+        <Button
+            android:text="취소"
+            android:textSize="19dp"
+            android:textColor="#ff7a00"
+            android:padding="16dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:onClick="mOnClose2"/>
+
+
+    </LinearLayout>
 
 
 

@@ -125,7 +125,7 @@ public class loginActivity extends Activity {
                                 intent1.putExtra("비밀번호", stpass);
 
                                 startActivity(intent1); // 메뉴화면 시작
-                                finish(); // 로그인 엑티비티 종료
+                               // finish(); // 로그인 엑티비티 종료
 
                             }
 
@@ -165,7 +165,7 @@ public class loginActivity extends Activity {
                                         intent2.putExtra("비밀번호", stpass);
 
                                         startActivity(intent2);
-                                        finish();
+                                     //   finish();
                                     } else { //틀리면 로그인 x
                                         Toast.makeText(loginActivity.this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
                                     }
