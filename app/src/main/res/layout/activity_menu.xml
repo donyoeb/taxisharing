@@ -5,24 +5,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/room"
+
+    <TextView
+        android:id="@+id/menutv"
+        android:hint="방 찾기 설정 결과값이 표시될 곳"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1"
+        android:layout_height="40dp"/>
+
+    <LinearLayout
+
+        android:id="@+id/roombt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
         android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/newbt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="방 생성" />
 
         <Button
             android:id="@+id/searchbt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="방 찾기" />
 
 
@@ -30,8 +38,8 @@
 
 
     <ListView
-        android:layout_below = "@+id/room"
-        android:layout_weight="1"
+        android:layout_below = "@+id/roombt"
+        android:id="@+id/roomlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
