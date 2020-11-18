@@ -115,7 +115,7 @@ public class loginActivity extends Activity {
                                 if (n.equals(stname)) { //데이터베이스에 내 아이디가 있는경우
                                     flag = 1; // 아이디는 있어서 깃발 세워주기 없으면 0
 
-                                    Toast.makeText(loginActivity.this, "기존 사용자는 '로그인' 버튼을 눌러주세요 ", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(loginActivity.this, "이미 가입 된 아이디입니다. ", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             if (flag == 0) {

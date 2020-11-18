@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements MapView.CurrentLo
         s_spot = intent.getExtras().getString("출발지");
         a_spot = intent.getExtras().getString("도착지");
 
-        databaseReference.child("방").child("공통방").child(name).child("1출발지").setValue(s_spot); //데이터베이스에 방설정 저장
-        databaseReference.child("방").child("공통방").child(name).child("2도착지").setValue(a_spot); //데이터베이스에 방설정 저장
-        databaseReference.child("방").child("공통방").child(name).child("3출발시").setValue(hour); //데이터베이스에 방설정 저장
-        databaseReference.child("방").child("공통방").child(name).child("4출발분").setValue(min);
+        databaseReference.child("방").child(name).child("1출발지").setValue(s_spot); //데이터베이스에 방설정 저장
+        databaseReference.child("방").child(name).child("2도착지").setValue(a_spot); //데이터베이스에 방설정 저장
+        databaseReference.child("방").child(name).child("3출발시").setValue(hour); //데이터베이스에 방설정 저장
+        databaseReference.child("방").child(name).child("4출발분").setValue(min);
 
         tv = (TextView)findViewById(R.id.maptv);
         tv.setText("  방 정보 (방장 / 출발지 / 도착지 / 출발시 : 출발분) \n  ->   "

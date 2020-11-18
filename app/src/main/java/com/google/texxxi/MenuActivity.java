@@ -42,8 +42,9 @@ public class MenuActivity extends Activity {
     private TextView menutv;
 
     private ListView listv;
-    private ArrayAdapter<String> adapter;
-    List<Object> Array = new ArrayList<Object>();
+
+
+    private room_list_adapter adapter = new room_list_adapter();
 
     ArrayList<String> usern = new ArrayList<String>(); //유저 네임 리스트
     ArrayList<String> starts = new ArrayList<String>();  // 출발지역 리스트
@@ -70,8 +71,6 @@ public class MenuActivity extends Activity {
         menutv = (TextView)findViewById(R.id.menutv); //메뉴 텍스트뷰
 
         listv =(ListView)findViewById(R.id.roomlist); //방 리스트뷰
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
-        listv.setAdapter(adapter); //리스트뷰에 넣을 어댑터 설정
 
         mnewbt.setOnClickListener(new View.OnClickListener() {   //방 생성 버튼
             @Override
@@ -113,6 +112,9 @@ public class MenuActivity extends Activity {
 
                 // 방 검색버튼 누를시에만 여기로 돌아옴
 
+                adapter = new room_list_adapter();
+                listv.setAdapter(adapter); //리스트뷰에 넣을 어댑터 설정
+
                 returnhour = data.getStringExtra("리턴시");
                 returnmin = data.getStringExtra("리턴분");
                 returnstart = data.getStringExtra("출발지리턴");
@@ -121,30 +123,30 @@ public class MenuActivity extends Activity {
                 // 데이터베이스에서 위에 가져온 정보를 토대로 검색한 결과를 리스트에 담아서 리스트뷰에 보여주기 ㄱㄱㄱㄱㄱㄱㄱ
                 menutv.setText("방 찾기 기능 설정값  ( 출발지 / 도착지 / 출발시 : 출발분) \n  ->   "+returnstart+" / "+returnarrive+" / "+returnhour+" : "+returnmin);
 
-                mReference = mDatabase.getReference("방").child("공통방"); // 변경값을 확인할 child 이름
+                mReference = mDatabase.getReference("방"); // 변경값을 확인할 child 이름
                 mReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        adapter.clear();
 
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
 
                             String username = i.getKey(); //방-공통방의 키값 (유저 닉넴)
-                         /*   String startspot = i.child(username).child("1출발지").getValue().toString();
-                            String arrivespot = i.child(username).child("2도착지").getValue().toString();
-                            String starthour = i.child(username).child("3출발시").getValue().toString();
-                            String startmin = i.child(username).child("4출발분").getValue().toString();
-/* 여기가 오류뜸 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                            result = "출발지: "+startspot+" / 도착지: "+arrivespot+" / 출발 시:분 "+starthour+":"+startmin;
-                            usern.add(username);
+
+                            String startspot = i.child("1출발지").getValue().toString();   //키값(유저 닉네임에 저장된 값들 가져오기
+                            String arrivespot = i.child("2도착지").getValue().toString();
+                            String starthour = i.child("3출발시").getValue().toString();
+                            String startmin = i.child("4출발분").getValue().toString();
+
+
+
+                            usern.add(username);   //하나하나 다 리스트에 저장시켜둠 나중에 쓰기위해
                             starts.add(startspot);
                             arraives.add(arrivespot);
                             starth.add(starthour);
-                            startm.add(startmin);*/
-                            result = username + startspot;
-                            Array.add(result); // array에 저장
-                            adapter.add(result); //adapter에 저장
+                            startm.add(startmin);
+
+                            adapter.addItem(startspot,arrivespot,starthour,startmin); //adapter에 저장
 
 
                         }
@@ -159,13 +161,9 @@ public class MenuActivity extends Activity {
                                 }
                             }
 
-
+//리스트뷰 오류 해결, 커스텀리스트뷰로 수정
 
                         }
-
-
-
-
 
                         adapter.notifyDataSetChanged(); // 어댑터리스트 갱신
                         listv.setSelection(adapter.getCount() - 1);

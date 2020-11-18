@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+
+        android:background="#CCEEFF"
+        >
+        <TextView
+            android:textColor="#FF8000"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="출발지 : "
+            />
+        <TextView
+            android:textColor="#FF8000"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="도착지 : "
+            />
+        <TextView
+            android:textColor="#FF8000"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="출발시간 : " />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:textColor="#411DF3"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startspotlist"
+            />
+        <TextView
+            android:textColor="#411DF3"
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrivespotlist"
+            />
+
+        <TextView
+            android:textColor="#411DF3"
+            android:gravity="left"
+            android:id="@+id/timelist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
